@@ -4,7 +4,7 @@
 class Food
 {
 private:
-	sf::Vector2f position = sf::Vector2f(10, 10);
+	sf::Vector2f position;
 	sf::RectangleShape sprite;
 	sf::Vector2f cellSize;
 

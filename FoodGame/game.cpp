@@ -11,7 +11,7 @@ int main() {
 	int WINDOW_HEIGHT = 800;
 	int WINDOW_WIDTH = 800;
 
-	sf::Vector2f gridSize(25, 25);
+	sf::Vector2f gridSize(40, 40);
 	sf::Vector2f cellSize(WINDOW_WIDTH/gridSize.x, WINDOW_HEIGHT/gridSize.y);
 
 	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Hungry Snakes");
@@ -20,7 +20,7 @@ int main() {
 	char direction = 'r';
 	
 	sf::Clock frameTime;
-	float frameRate = 60.0f;
+	float frameRate = 10.0f;
 
 	Food food(cellSize, FOODCOLOR);
 
@@ -45,6 +45,7 @@ int main() {
 		//Update Every gameframe
 		if (frameTime.getElapsedTime().asSeconds() > 1.0f / frameRate) {
 			food.update(direction);
+			frameTime.restart();
 		}
 
 
