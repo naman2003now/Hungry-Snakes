@@ -1,5 +1,6 @@
 #include <SFML\Graphics.hpp>
 #include <iostream>
+#include "Snake.h"
 #include "Food.h"
 
 #define BGCOLOR sf::Color(50, 50, 50)
@@ -23,6 +24,9 @@ int main() {
 	float frameRate = 10.0f;
 
 	Food food(cellSize, FOODCOLOR);
+	std::vector<Snake> allSnakes;
+	allSnakes.push_back(Snake(cellSize, SNAKECOLOR));
+	allSnakes.push_back(Snake(cellSize, SNAKECOLOR));
 
 	while (window.isOpen()) {
 		while (window.pollEvent(event)) {
@@ -45,11 +49,17 @@ int main() {
 		//Update Every gameframe
 		if (frameTime.getElapsedTime().asSeconds() > 1.0f / frameRate) {
 			food.update(direction);
+			for (int i = 0; i < allSnakes.size(); i++) {
+				allSnakes[i].update(allSnakes);
+			}
 			frameTime.restart();
 		}
 
 
 		window.clear(BGCOLOR);
+		for (int i = 0; i < allSnakes.size(); i++) {
+			allSnakes[i].draw(window);
+		}
 		food.draw(window);
 		window.display();
 	}
